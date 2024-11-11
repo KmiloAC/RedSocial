@@ -19,16 +19,26 @@ def handle_usuarios_root():
     )
     return jsonify(response.json()), response.status_code
 
-# Ruta para manejar usuarios
+# Ruta dinámica para manejar subrutas dentro de /usuarios
 @gateway.route('/usuarios/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def handle_usuarios(path):
-    url = f"{MICROSERVICIO_USUARIOS}/{path}"
-    response = requests.request(
-        method=request.method,
-        url=url,
-        headers=request.headers,
-        json=request.get_json() if request.method in ['POST', 'PUT'] else None
-    )
+    url = f"{MICROSERVICIO_USUARIOS}/usuarios/{path}"  # Redirige las subrutas hacia el microservicio
+    # Realiza la solicitud hacia el microservicio de usuarios
+    if request.method in ['POST', 'PUT']:
+        # Si la solicitud es POST o PUT, se envía el JSON
+        response = requests.request(
+            method=request.method,
+            url=url,
+            headers=request.headers,
+            json=request.get_json()  # Enviar el JSON en el cuerpo
+        )
+    else:
+        # Para GET y DELETE, no se envía JSON
+        response = requests.request(
+            method=request.method,
+            url=url,
+            headers=request.headers
+        )
     return jsonify(response.json()), response.status_code
 
 # Aquí puedes agregar más rutas para otros microservicios, como publicaciones y notificaciones
