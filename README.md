@@ -15,3 +15,5 @@ pip install flask
 PARA PODER HACER PETICIONES HTTP
 pip install requests
 
+curl -X GET http://localhost:5000/usuarios
+

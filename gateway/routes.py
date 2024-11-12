@@ -1,7 +1,7 @@
 # gateway/routes.py
 from flask import Blueprint, request, jsonify
 import requests
-from config import MICROSERVICIO_USUARIOS, MICROSERVICIO_PUBLICACIONES, MICROSERVICIO_NOTIFICACIONES
+from config import MICROSERVICIO_USUARIOS
 
 # Creamos un Blueprint para organizar las rutas
 gateway = Blueprint('gateway', __name__)
