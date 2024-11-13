@@ -8,4 +8,5 @@ app = Flask(__name__)
 app.register_blueprint(gateway)
 
 if __name__ == '__main__':
+    print("API Gateway corriendo en el puerto 5000")
     app.run(port=5000)
