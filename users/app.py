@@ -1,6 +1,8 @@
 import sqlite3
 from flask import Flask, jsonify, request, g
 
+#Comentario de prueba
+
 app = Flask(__name__)
 DATABASE = 'database.db'  # Nombre del archivo de la base de datos
 
